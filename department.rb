@@ -3,13 +3,9 @@ require './employee'
 
 class Department < ActiveRecord::Base
   has_many :employees
-  
-  def add_employee(new_employee)
-    @staff << new_employee
-  end
 
   def department_salary
-    @staff.reduce(0.0) {|sum, e| sum + e.salary}
+    employees.reduce(0.0) {|sum, e| sum + e.salary}
   end
 
   def add_employee_review(review)
