@@ -29,7 +29,7 @@ class Employee < ActiveRecord::Base
   end
 
   def set_employee_performance(boolean)
-    @satisfactory = boolean
+    self.satisfactory = boolean
   end
 
   def raise_by_percent(raise_percentage)

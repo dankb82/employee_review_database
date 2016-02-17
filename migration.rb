@@ -16,6 +16,7 @@ class DepartmentsAndEmployeesMigration < ActiveRecord::Migration
       t.string :phone
       t.decimal :salary, precision: 8, scale: 2
       t.text :review
+      t.boolean :satisfactory
       t.timestamps null: false
     end
   end
