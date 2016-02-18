@@ -5,7 +5,6 @@ require './employee.rb'
 require 'active_record'
 
 
-
 ActiveRecord::Base.establish_connection(
 adapter: 'sqlite3',
 database: 'db.sqlite3'
@@ -61,7 +60,7 @@ class EmployeeReviews < Minitest::Test
   end
 
   def test_add_employee_review
-    xavier = Employee.new(name: "Xavier", email: "ProfX@marvel.com", phone: "911", salary: 70000.00)
+    xavier = Employee.create(name: "Xavier", email: "ProfX@marvel.com", phone: "911", review: nil, salary: 70000.00)
     assert xavier.add_employee_review(positive_review_one)
   end
 
@@ -89,9 +88,9 @@ class EmployeeReviews < Minitest::Test
     xavier = Employee.new(name: "Xavier", email: "ProfX@marvel.com", phone: "911", salary: 70000.00)
     new_employee = Employee.new(name: "Dan", email: "d@mail.com", phone: "914-555-5555", salary: 50000.00)
     old_employee = Employee.new(name: "Yvonne", email: "Yvonne@urFired.com", phone: "919-123-4567", salary: 40000.00)
-    a.add_employee(xavier)
-    a.add_employee(new_employee)
-    a.add_employee(old_employee)
+    a.employees << xavier
+    a.employees << new_employee
+    a.employees << old_employee
     xavier.set_employee_performance(true)
     new_employee.set_employee_performance(true)
     old_employee.set_employee_performance(false)
@@ -102,7 +101,7 @@ class EmployeeReviews < Minitest::Test
   end
 
   def test_evaluate_employee_review
-    xavier = Employee.new(name: 'Xavier', email: 'ProfX@marvel.com', phone: '911', salary: 70000.00)
+    xavier = Employee.new(name: 'Xavier', email: 'ProfX@marvel.com', phone: '911',review: nil, salary: 70000.00)
     xavier.add_employee_review(positive_review_one)
     assert xavier.satisfactory
   end

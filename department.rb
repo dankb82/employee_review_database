@@ -5,7 +5,7 @@ class Department < ActiveRecord::Base
   has_many :employees
 
   def add_employee_review(review)
-    employees.review << review
+    self.review = review
   end
 
   def department_salary
